@@ -21,8 +21,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
 from bayes_opt import BayesianOptimization
-import lightgbm
-import catboost
+
+# Feature Selection
+from boruta import BorutaPy
 
 # Evaluation
 from sklearn.metrics import accuracy_score, recall_score, precision_score, roc_auc_score
@@ -41,7 +42,7 @@ class ModelHistory():
         
     
     def kfold_validation(self, classifier, name,
-                     continuous_cols, categorical_cols):
+                     continuous_cols, categorical_cols, feature_mask=False):
    
         skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=1)
 
@@ -74,38 +75,94 @@ class ModelHistory():
 
             elif len(continuous_cols)!=0:
 
-                ss = StandardScaler()
-                ohe = OneHotEncoder(sparse=False)
+                if feature_mask==True:
+                    mask = ['x0_2019', 'x1_Midwest', 'x1_NorthEast', 'x1_South', 'x3_0', 'x3_1',
+       'x4_1-2x', 'x4_Never', 'x4_Occasionally', 'x4_Regularly Now',
+       'x4_Regularly in Past', 'x5_1 Pack', 'x5_1-5 Cigarettes', 'x5_2 Packs',
+       'x5_<1 Cigarettes', 'x5_None', 'x6_0', 'x6_1-2X', 'x6_10-19X',
+       'x6_20-39X', 'x6_3-5X', 'x6_40+', 'x6_6-9X', 'x7_0', 'x7_1-2X',
+       'x7_10-19X', 'x7_20-39X', 'x7_3-5X', 'x7_40+', 'x7_6-9X', 'x8_3-5X',
+       'x8_6-9X', 'x8_None', 'x8_Once', 'x8_Twice', 'x9_Female', 'x9_Male',
+       'x10_Country', 'x10_Farm', 'x12_No', 'x12_Yes', 'x14_Yes',
+       'x15_Graduated HS', 'x16_Graduated HS', 'x17_Yes/Nearly All',
+       'x18_Conservative', 'x18_Liberal', 'x18_Very Liberal',
+       'x19_Every Week+', 'x19_Never', 'x19_Rarely', 'x20_A Little Important',
+       'x20_Not Important', 'x20_Pretty Important', 'x20_Very Important',
+       'x21_Above Average', 'x21_Average', 'x22_Average', 'x23_0', 'x24_0',
+       'x24_1', 'x25_0', 'x26_0', 'x26_1-2', 'x26_3-5', 'x27_A+',
+       "x30_Definitely Won't", 'x31_Definitely Will', 'x37_No', 'x40_0',
+       'x41_0', 'x42_1', 'x42_2', 'x42_4-5', 'x42_6-7', 'x43_Never', 'x45_0',
+       'x46_0', 'sampling_weight']
+                
+                    ss = StandardScaler()
+                    ohe = OneHotEncoder(sparse=False)
 
-                cont = continuous_cols
-                cat_cols = categorical_cols
+                    cont = continuous_cols
+                    cat_cols = categorical_cols
 
-                scaled = ss.fit_transform(x_t[cont])
-                dummies = ohe.fit_transform(x_t[cat_cols])
+                    scaled = ss.fit_transform(x_t[cont])
+                    dummies = ohe.fit_transform(x_t[cat_cols])
 
-                x_t = pd.concat([pd.DataFrame(scaled, columns=cont), 
-                                          pd.DataFrame(dummies, columns=ohe.get_feature_names())], axis=1)
+                    x_t = pd.concat([pd.DataFrame(scaled, columns=cont), 
+                                              pd.DataFrame(dummies, columns=ohe.get_feature_names())], axis=1)
+                    x_t = x_t[mask]
 
-                x_val = self.X_train.iloc[val_ind]
-                y_val = self.y_train.iloc[val_ind]
-
-
-                sc = ss.transform(x_val[cont])
-                dums = ohe.transform(x_val[cat_cols])
-
-                x_val = pd.concat([pd.DataFrame(sc, columns=cont), 
-                                      pd.DataFrame(dums, columns=ohe.get_feature_names())], axis=1)
+                    x_val = self.X_train.iloc[val_ind]
+                    y_val = self.y_train.iloc[val_ind]
 
 
-                x_val = self.X_train.iloc[val_ind]
-                y_val = self.y_train.iloc[val_ind]
+                    sc = ss.transform(x_val[cont])
+                    dums = ohe.transform(x_val[cat_cols])
 
-
-                sc = ss.transform(x_val[cont])
-                dums = ohe.transform(x_val[cat_cols])
-
-                x_val = pd.concat([pd.DataFrame(sc, columns=cont), 
+                    x_val = pd.concat([pd.DataFrame(sc, columns=cont), 
                                           pd.DataFrame(dums, columns=ohe.get_feature_names())], axis=1)
+
+
+                    x_val = self.X_train.iloc[val_ind]
+                    y_val = self.y_train.iloc[val_ind]
+
+
+                    sc = ss.transform(x_val[cont])
+                    dums = ohe.transform(x_val[cat_cols])
+
+                    x_val = pd.concat([pd.DataFrame(sc, columns=cont), 
+                                              pd.DataFrame(dums, columns=ohe.get_feature_names())], axis=1)
+                    
+                    x_val = x_val[mask]
+                    
+                else:
+                    ss = StandardScaler()
+                    ohe = OneHotEncoder(sparse=False)
+
+                    cont = continuous_cols
+                    cat_cols = categorical_cols
+
+                    scaled = ss.fit_transform(x_t[cont])
+                    dummies = ohe.fit_transform(x_t[cat_cols])
+
+                    x_t = pd.concat([pd.DataFrame(scaled, columns=cont), 
+                                              pd.DataFrame(dummies, columns=ohe.get_feature_names())], axis=1)
+
+                    x_val = self.X_train.iloc[val_ind]
+                    y_val = self.y_train.iloc[val_ind]
+
+
+                    sc = ss.transform(x_val[cont])
+                    dums = ohe.transform(x_val[cat_cols])
+
+                    x_val = pd.concat([pd.DataFrame(sc, columns=cont), 
+                                          pd.DataFrame(dums, columns=ohe.get_feature_names())], axis=1)
+
+
+                    x_val = self.X_train.iloc[val_ind]
+                    y_val = self.y_train.iloc[val_ind]
+
+
+                    sc = ss.transform(x_val[cont])
+                    dums = ohe.transform(x_val[cat_cols])
+
+                    x_val = pd.concat([pd.DataFrame(sc, columns=cont), 
+                                              pd.DataFrame(dums, columns=ohe.get_feature_names())], axis=1)
 
             clf = classifier
 

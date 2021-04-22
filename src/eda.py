@@ -163,10 +163,8 @@ def best_correlations(data):
 
     # rename correlation column as cc rather than 0
     best_corrs.columns = ['phik']
-
-    # drop duplicates. This could be dangerous if you have variables perfectly correlated with variables other than themselves.
-    # for the sake of exercise, kept it in.
-    best_corrs.drop_duplicates(inplace=True)
+    
+#     best_corrs.drop_duplicates(inplace=True)
     
     return best_corrs
 
