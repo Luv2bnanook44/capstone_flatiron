@@ -1,0 +1,4 @@
+name: capstone-env
+channels:
+  - defaults
+prefix: /Users/jamiedowat/PySpace/anaconda3/envs/capstone-env
