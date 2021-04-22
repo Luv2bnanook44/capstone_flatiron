@@ -21,16 +21,7 @@
                         <!--              Replace with a photo relevant to your project (and caption if              
                             applicable). It will automatically fill the same width as the              
                             template version due to CSS styling.            -->            
-                            <img src="/static/mtflogo.jpg" alt="mtflogo" style="width: 100%;">            
-                            <span style="font-size: small;">Photo by              
-                                <a href="https://unsplash.com/@bluespot?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">                
-                                    Eshwar charan              
-                                </a>              
-                                on              
-                                <a href="https://unsplash.com/s/photos/antelope-wyoming?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">                
-                                    Unsplash              
-                                </a>            
-                            </span>          
+                            <img src="/static/mtflogo.jpg" alt="mtflogo" style="width: 100%;">         
                         </div>          
                         <div class="col-md-8">            
                             <!--              Replace all labels and inputs with the relevant features for your
@@ -45,59 +36,468 @@
                                                 to put each one on its own line. They aren't necessary for the              
                                                 form to function but they help the flow without needing a lot of              
                                                 nested <div>s to achieve the desired layout            -->            
-                                                    <form action="/make_prediction" method="post">             
-                                                    <label for="input-1">Adult Antelope Population (Hundreds)</label>              
-                                                    <input type="text" id="input-1" name="adult_antelope_population" value="7.2">              
-                                                    <br>              
-                                                    <label for="input-2">Annual Precipitation (Inches)</label>              
-                                                    <input type="text" id="input-2" name="annual_precipitation" value="10.8">              
-                                                    <br>              
-                                                    <label for="input-3">Winter Severity Index</label>              
-                                                    <!--                Note on "select" (drop-down): the value is what is sent as the
-                                                                        value in the params dictionary, the text between the tags is
-                                                                                        what the user sees              -->              
-                                                    <select id="input-3" name="winter_severity_index">                
-                                                        <option value="1.0">1 (Mild)</option>                
-                                                        <option value="2.0">2</option>                
-                                                        <option value="3.0">3</option>                
-                                                        <option value="4.0">4</option>                
-                                                        <option value="5.0">5 (Severe)</option>              
-                                                    </select>              
-                                                    <br>              
-                                                    <!-- You shouldn't need to change the submit button -->              
-                                                    <input type="submit" class="btn btn-primary btn-lg" value="Predict!">            
-                                                </form>          
-                                            </div>        
-                                        </div>        
-                                    </div>      
-                                    <!-- hr is "horizontal rule". it makes a nice classy line -->      
-                                    <hr>      
-                                    <!-- This section contains paragraphs of text at the bottom --> 
-                                        <div class="container">        
-                                    <!--          Replace with your content. The <p> tags are how you create new 
-                                                    paragraphs. If you just hit enter, the text will "float" up to the          
-                                                    previous line        -->        
-                                        <p>          
-                                        Some cool content will go here        
-                                        </p>        
-                                        <p>          
-                                        This app predicts the number of spring fawns in an antelope
-                                        population, based on data from the Bureau of Land Management        
-                                        </p>        
-                                        <p>          
-                                        More hence that dear evenly gulped much opposite seagull some from 
-                                        regardless more prudently so rational howled as much          
-                                        out inclusive heinous melodious. And however one that chose much 
-                                        a as as went and bled hello wow gracefully wolf joyfully drew some 
-                                        amongst reckless much          
-                                        dear shut excellent caribou glowered moistly this up telepathic 
-                                        characteristically one. Far when irrational well adoring or 
-                                        buffalo then much and a and and iguana due monkey some where 
-                                        instead this forlorn          
-                                        macaw swift and and the much evident hey far 
-                                        goodness yikes jeez conductively.        
-                                        </p>      
-                                    </div>    
-                                </div>  
-                            </body>
-                        </html>
+                            <form action="/make_prediction" method="post">
+                                
+                                <br>              
+                                <label for="input-1">First off, have you used any illicit drug (including marijuana and abuse of prescription medication) in the past YEAR?</label>                        
+                                <select id="input-1" name="binary_drug">                
+                                    <option value="1">Yes</option>                
+                                    <option value="0">No</option>                       
+                                </select>              
+                                <br>  
+                                <label for="input-2">If you are a high school senior, what is the year? (If not, what year were you a high school senior?)</label>              
+                                <input type="text" id="input-2" name="yr_adminst" value="2021"> 
+                                <br>              
+                                <label for="input-3">What region of the US do you live in?</label>                        
+                                <select id="input-3" name="region">                
+                                    <option value="Northeast">Northeast</option>                
+                                    <option value="Midwest">Midwest</option>                
+                                    <option value="West">West</option>                
+                                    <option value="South">South</option>             
+                                </select>              
+                                <br>
+                                <br>              
+                                <label for="input-4">Do you live in a Metropolitan Statistical Area?</label> 
+                                <p>          
+                                    Click HERE to see if you do!    
+                                </p>                            
+                                <select id="input-4" name="msa">                
+                                    <option value="1">Yep</option>                
+                                    <option value="0">Nope</option>        
+                                </select>              
+                                <br>
+                                <br>              
+                                <label for="input-5">Have you ever smoked a cigarette?</label>                        
+                                <select id="input-5" name="evr_smoked_cig">                
+                                    <option value="Never">Never</option>                
+                                    <option value="1-2x">Once or Twice</option>                
+                                    <option value="Occasionally">Occasionally</option>                
+                                    <option value="Regularly Now">Regularly Now</option> 
+                                    <option value="Regularly in Past">Regularly in the past</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-6">How many cigarettes have you smoked in the past month?</label>                        
+                                <select id="input-6" name="cig_month_freq">                
+                                    <option value="None">Nada</option>                
+                                    <option value="<1 Cigarettes">One or less</option>                
+                                    <option value="1-5 Cigarettes">Between 1-5</option>                
+                                    <option value="1 Pack">About 1 Pack</option> 
+                                    <option value="1.5 Packs">About 1.5 Packs</option>  
+                                    <option value="2 Packs">About 2 Packs</option>  
+                                    <option value="2+ Packs">More than 2 packs</option>           
+                                </select>              
+                                <br>   
+                                <br>              
+                                <label for="input-7">On how many occasions (if any) have you had alcoholic beverages to drink-- more than just a few sips-- in your lifetime?</label>                        
+                                <select id="input-7" name="alcohol_lifetime_freq">                
+                                    <option value="0">0 Occasions</option>                
+                                    <option value="1-2X">1-2 Occasions</option>                
+                                    <option value="3-5X">3-5 Occasions</option>                
+                                    <option value="6-9X">6-9 Occasions</option> 
+                                    <option value="10-19X">10-19 Occasions</option>  
+                                    <option value="20-39X">20-39 Occasions</option>  
+                                    <option value="40+">40+ Occasions</option>           
+                                </select>              
+                                <br> 
+                                <br>              
+                                <label for="input-8">On how many occasions (if any) have you had alcoholic beverages to drink-- more than just a few sips-- in the past YEAR?</label>                        
+                                <select id="input-8" name="alcohol_yr_freq">                
+                                    <option value="0">0 Occasions</option>                
+                                    <option value="1-2X">1-2 Occasions</option>                
+                                    <option value="3-5X">3-5 Occasions</option>                
+                                    <option value="6-9X">6-9 Occasions</option> 
+                                    <option value="10-19X">10-19 Occasions</option>  
+                                    <option value="20-39X">20-39 Occasions</option>  
+                                    <option value="40+">40+ Occasions</option>           
+                                </select>              
+                                <br>
+                                <br>              
+                                <label for="input-9">Think back over the last 2 WEEKS. How many times have you had five or more drinks in a row?</label>                        
+                                <p> 
+                                (A "drink" is a bottle of beer, a glass of wine, a wine cooler, a shot glass of liquor, a mixed drink, etc.)
+                                </p> 
+                                <select id="input-9" name="alcohol_2weeks">                
+                                    <option value="None">0</option>                
+                                    <option value="Once">Once</option>                
+                                    <option value="Twice">Twice</option>                
+                                    <option value="3-5X">3-5 times</option> 
+                                    <option value="6-9X">6-9 times</option>  
+                                    <option value="10+X">10 or more times</option>           
+                                </select>              
+                                <br>   
+                                <br>              
+                                <label for="input-10">Sex</label>                        
+                                <select id="input-10" name="sex">                
+                                    <option value="Female">Female</option>                
+                                    <option value="Male">Male</option>           
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-11">Where did you grow up mostly?</label>                        
+                                <select id="input-11" name="area_type">                
+                                    <option value="Farm">Farm</option>                
+                                    <option value="Country">Country</option>                
+                                    <option value="Small Town">Small Town (less than 50,000)</option>                
+                                    <option value="Suburb of Medium City">In a suburb of Medium-sized city</option> 
+                                    <option value="Medium City">Medium-sized city (50,000-100,000)</option>  
+                                    <option value="Suburb of Large City">In a suburb of a Large city</option>  
+                                    <option value="Large City">Large city (100,000-500,000)</option> 
+                                    <option value="Suburb of a Vry Lrg City">In a suburb of a very large city</option>
+                                    <option value="City >500,000 (Vry Large)">Very large city (over 500,000)</option>           
+                                </select>              
+                                <br> 
+                                <br>              
+                                <label for="input-12">What is your present marital status?</label>                        
+                                <select id="input-12" name="marital_status">                
+                                    <option value="Single">Single</option>                
+                                    <option value="Engaged">Engaged</option>                
+                                    <option value="Married">Married</option>                
+                                    <option value="Separated/Divorced">Separated/Divorced</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-13">Which of the following people live in the same household with you? (Mark all that apply)</label>                                  
+                                <br>   
+                                <input type="checkbox" id="input-13" name="has_father" value="Yes">
+                                <label for="input13"> Father</label><br>
+                                <input type="checkbox" id="input-14" name="has_mother" value="Yes">
+                                <label for="input-14"> Mother</label><br>
+                                <input type="checkbox" id="input-15" name="has_siblings" value="Yes">
+                                <label for="input-15"> Siblings</label><br>        
+                                <br>              
+                                <label for="input-16">What is the highest level of schooling your father completed?</label>                        
+                                <select id="input-16" name="father_educ_lvl">                
+                                    <option value="Grade School">Grade School</option>                
+                                    <option value="Some High School">Some High School</option>                
+                                    <option value="Graduated HS">Graduated High School</option>                
+                                    <option value="Some College">Some College</option> 
+                                    <option value="College Grad">Graduated College</option> 
+                                    <option value="Graduate School">Graduate School</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-17">What is the highest level of schooling your mother completed?</label>                        
+                                <select id="input-17" name="mother_educ_lvl">                
+                                    <option value="Grade School">Grade School</option>                
+                                    <option value="Some High School">Some High School</option>                
+                                    <option value="Graduated HS">Graduated High School</option>                
+                                    <option value="Some College">Some College</option> 
+                                    <option value="College Grad">Graduated College</option> 
+                                    <option value="Graduate School">Graduate School</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-18">Did your mother have a paid job (half-time or more) during the time you were growing up?</label>                        
+                                <select id="input-18" name="mother_employed">                
+                                    <option value="No">No</option>                
+                                    <option value="Yes/Some">Yes, some of the time</option>                
+                                    <option value="Yes/Most">Yes, most of the time</option>                
+                                    <option value="Yes/Nearly All">Yes, all or nearly all of the time</option>           
+                                </select>              
+                                <br>   
+                                <br>              
+                                <label for="input-19">How would you describe your political beliefs?</label>                        
+                                <select id="input-19" name="political_value_type">                
+                                    <option value="Don't Know">Don't Know</option>                
+                                    <option value="Liberal">Liberal</option>                
+                                    <option value="Conservative">Conservative</option>                
+                                    <option value="Very Liberal">Very Liberal</option> 
+                                    <option value="Very Conservative">Very Conservative</option> 
+                                    <option value="Radical">Radical</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-20">How often do you attend religious services?</label>                        
+                                <select id="input-20" name="relig_attd">                
+                                    <option value="Never">Never</option>
+                                    <option value="Rarely">Rarely</option>                
+                                    <option value="1-2x Month">Once or twice a month</option>                
+                                    <option value="Every Week+">About once a week or more</option>                       
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-21">How important is religion in your life?</label>                        
+                                <select id="input-21" name="relig_importance">                
+                                    <option value="Not Important">Not Important</option>
+                                    <option value="A Little Important">A Little Important</option>                
+                                    <option value="Pretty Important">Pretty Important</option>                
+                                    <option value="Very Important">Very Important</option>                       
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-22">Compared with others your age throughout the country, how do you rate yourself on school ability?</label>                        
+                                <select id="input-22" name="academic_self_rating">                
+                                    <option value="Far Below">Far Below</option>                
+                                    <option value="Below Avg">Below Avg</option>                
+                                    <option value="Slightly Below Avg">Slightly Below Avg</option>                
+                                    <option value="Average">Average</option> 
+                                    <option value="Slightly Above Average">Slightly Above Average</option> 
+                                    <option value="Above Average">Above Average</option>
+                                    <option value="Far Above Average">Far Above Average</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-23">How intelligent do you think you are compared with others your age?</label>                        
+                                <select id="input-23" name="intelligence_self_rating">                
+                                    <option value="Far Below">Far Below</option>                
+                                    <option value="Below Avg">Below Avg</option>                
+                                    <option value="Slightly Below Avg">Slightly Below Avg</option>                
+                                    <option value="Average">Average</option> 
+                                    <option value="Slightly Above Average">Slightly Above Average</option> 
+                                    <option value="Above Average">Above Average</option>
+                                    <option value="Far Above Average">Far Above Average</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-24">During the last 4 weeks, how many whole days of school have you missed because of ILLNESS?</label>                        
+                                <select id="input-24" name="school_missed_illness">                
+                                    <option value="0">0</option>                
+                                    <option value="1">1</option>                
+                                    <option value="2">2</option>                
+                                    <option value="3">3</option> 
+                                    <option value="4-5">4-5</option> 
+                                    <option value="6-10">6-10</option>
+                                    <option value="11+">11+</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-25">During the last 4 weeks, how many whole days of school have you missed because you SKIPPED or CUT?</label>                        
+                                <select id="input-25" name="school_missed_ditched">                
+                                    <option value="0">0</option>                
+                                    <option value="1">1</option>                
+                                    <option value="2">2</option>                
+                                    <option value="3">3</option> 
+                                    <option value="4-5">4-5</option> 
+                                    <option value="6-10">6-10</option>
+                                    <option value="11+">11+</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-26">During the last 4 weeks, how many whole days of school have you missed for OTHER reasons?</label>                        
+                                <select id="input-26" name="school_missed_other">                
+                                    <option value="0">0</option>                
+                                    <option value="1">1</option>                
+                                    <option value="2">2</option>                
+                                    <option value="3">3</option> 
+                                    <option value="4-5">4-5</option> 
+                                    <option value="6-10">6-10</option>
+                                    <option value="11+">11+</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-27">During the last 4 weeks, how often have you gone to school, but skipped class when you weren't supposed to?</label>                        
+                                <select id="input-27" name="skipped_class">                
+                                    <option value="0">0</option>                
+                                    <option value="1-2">1-2</option>                
+                                    <option value="3-5">3-5</option>                
+                                    <option value="6-10">6-10</option> 
+                                    <option value="11-20">11-20</option> 
+                                    <option value="21+">21+</option>        
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-28">Which of the following best describes your average grade so far in high school?</label>                        
+                                <select id="input-28" name="avg_grade">                
+                                    <option value="A+">A+ (93-100)</option>                
+                                    <option value="A-">A- (90-92)</option>                
+                                    <option value="B+">B+ (87-89)</option>                
+                                    <option value="B">B (83-86)</option> 
+                                    <option value="B-">B- (80-82)</option> 
+                                    <option value="C+">C+ (77-79)</option>
+                                    <option value="C">C (73-76)</option> 
+                                    <option value="C-">C- (70-72)</option> 
+                                    <option value="D">D (69 or below)</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-29">How likely is it that you will attend a technical or vocational school after high school?</label>                        
+                                <select id="input-29" name="tech_school_after_hs">                
+                                    <option value="Definitely Won't">Definitely Won't</option>
+                                    <option value="Probably Won't">Probably Won't</option>                
+                                    <option value="Probably Will">Probably Will</option>                
+                                    <option value="Definitely Will">Definitely Will</option>                       
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-30">How likely is it that you will serve in the armed forces after high school?</label>                        
+                                <select id="input-30" name="military_after_hs">                
+                                    <option value="Definitely Won't">Definitely Won't</option>
+                                    <option value="Probably Won't">Probably Won't</option>                
+                                    <option value="Probably Will">Probably Will</option>                
+                                    <option value="Definitely Will">Definitely Will</option>                       
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-31">How likely is it that you will graduate from a 2-year college program after high school?</label>                        
+                                <select id="input-31" name="2yrcoll_after_hs">                
+                                    <option value="Definitely Won't">Definitely Won't</option>
+                                    <option value="Probably Won't">Probably Won't</option>                
+                                    <option value="Probably Will">Probably Will</option>                
+                                    <option value="Definitely Will">Definitely Will</option>                       
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-32">How likely is it that you will graduate from college (4 year) after high school?</label>                        
+                                <select id="input-32" name="4yrcoll_after_hs">                
+                                    <option value="Definitely Won't">Definitely Won't</option>
+                                    <option value="Probably Won't">Probably Won't</option>                
+                                    <option value="Probably Will">Probably Will</option>                
+                                    <option value="Definitely Will">Definitely Will</option>                       
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-33">How likely is it that you will attend graduate or professional school after high school?</label>                        
+                                <select id="input-33" name="gradsch_after_hs">                
+                                    <option value="Definitely Won't">Definitely Won't</option>
+                                    <option value="Probably Won't">Probably Won't</option>                
+                                    <option value="Probably Will">Probably Will</option>                
+                                    <option value="Definitely Will">Definitely Will</option>                       
+                                </select>              
+                                <br>  
+                                <br> 
+                                
+                                <br>              
+                                <label for="input-34">Suppose you could do just what you'd like and nothing
+                                    stood in your way. How many of the following things would you WANT to do?
+                                    (Mark all that apply.)</label>                                  
+                                <br>   
+                                <input type="checkbox" id="input-34" name="desire_tech_school" value="Yes">
+                                <label for="input34"> Technical/Vocational School</label><br>
+                                <input type="checkbox" id="input35" name="desire_military" value="Yes">
+                                <label for="input35"> Serve in the Armed Forces</label><br>
+                                <input type="checkbox" id="input36" name="desire_2yrcoll" value="Yes">
+                                <label for="input36"> Graduate from a 2 year college program</label><br>   
+                                <input type="checkbox" id="input37" name="desire_4yrcoll" value="Yes">
+                                <label for="input37"> Graduate from a 4 year college program</label><br>
+                                <input type="checkbox" id="input38" name="desire_gradsch" value="Yes">
+                                <label for="input38"> Attend graduate or professional school after college</label><br>     
+                                <input type="checkbox" id="input39" name="desire_none" value="Yes">
+                                <label for="input39"> None of the Above</label><br>
+                                <br>              
+                                <label for="input-40">On the average over the school year, how many hours per week do you work in a paid or unpaid job?</label>                        
+                                <select id="input-40" name="work_hrs">                
+                                    <option value="0">0</option>                
+                                    <option value="5 or less">5 or less</option>                
+                                    <option value="6-10">6-10</option>                
+                                    <option value="11-15">11-15</option> 
+                                    <option value="16-20">16-20</option> 
+                                    <option value="21-25">21-25</option>
+                                    <option value="26-30">26-30</option> 
+                                    <option value="30+">30+</option>            
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-41">During an average week, how much money do you get from a job or other work?</label>                        
+                                <select id="input-41" name="work_pay">                
+                                    <option value="0">0</option>                
+                                    <option value="1-5">1-5</option>                
+                                    <option value="6-10">6-10</option>                
+                                    <option value="11-20">11-20</option> 
+                                    <option value="21-35">21-35</option> 
+                                    <option value="36-50">36-50</option>
+                                    <option value="51-75">51-75</option> 
+                                    <option value="76-125">76-125</option>
+                                    <option value="126-175">126-175</option> 
+                                    <option value="176+">176+</option>             
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-42">During an average week, how much money do you get from other sources (allowances, etc.)?</label>                        
+                                <select id="input-42" name="other_income">                
+                                    <option value="0">0</option>                
+                                    <option value="1-5">1-5</option>                
+                                    <option value="6-10">6-10</option>                
+                                    <option value="11-20">11-20</option> 
+                                    <option value="21-35">21-35</option> 
+                                    <option value="36-50">36-50</option>
+                                    <option value="51-75">51-75</option> 
+                                    <option value="76-125">76-125</option>
+                                    <option value="126-175">126-175</option> 
+                                    <option value="176+">176+</option>             
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-43">During an typical week, on how many evenings do you go out for fun and recreation?</label>                        
+                                <select id="input-43" name="rec_time">                
+                                    <option value="0">Less than 1</option>                
+                                    <option value="1-5">One</option>                
+                                    <option value="6-10">Two</option>                
+                                    <option value="11-20">Three</option> 
+                                    <option value="21-35">Four or Five</option> 
+                                    <option value="36-50">Six or Seven</option>           
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-44">On the average, how often do you go out with date (or your spouse if you are married)?</label>                        
+                                <select id="input-44" name="date_freq">                
+                                    <option value="Never">Never</option>                
+                                    <option value="1x Month">1x Month</option>                
+                                    <option value="2-3x Month">2-3x Month</option>                
+                                    <option value="1x Week">1x Week</option> 
+                                    <option value="2-3x Week">2-3x Week</option> 
+                                    <option value="3x Week+">3x Week+</option>           
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-45">During an average week, how much do you usually drive a car, truck, or motorcycle?</label>                        
+                                <select id="input-45" name="drive_freq">                
+                                    <option value="0">0</option>                
+                                    <option value="1-10">1-10</option>                
+                                    <option value="11-50">11-50</option>                
+                                    <option value="51-100">51-100</option> 
+                                    <option value="101-200">101-200</option> 
+                                    <option value="200+">200+</option>           
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-46">Within the last 12 months, how many times have you received a ticket (or been stopped and warned) for moving violations, such as speeding, running a stop light, or improper passing?</label>                        
+                                <select id="input-46" name="12mo_r_tcktd">                
+                                    <option value="0">0</option>                
+                                    <option value="1">1</option>                
+                                    <option value="2">2</option>                
+                                    <option value="3">3</option> 
+                                    <option value="4+">4</option>        
+                                </select>              
+                                <br>  
+                                <br>              
+                                <label for="input-47">Within the last 12 months, how many accidents have you had while you were driving (whether or not you were responsible)?</label>   
+                                <p>*Accident: a collision involving property damage or personal injury-- NOT bumps or scratches in parking lots.</p>                     
+                                <select id="input-47" name="12mo_accidents">                
+                                    <option value="0">0</option>                
+                                    <option value="1">1</option>                
+                                    <option value="2">2</option>                
+                                    <option value="3">3</option> 
+                                    <option value="4+">4</option>        
+                                </select>              
+                                <br>  
+                            <!-- rest of template -->
+                              
+                            <!-- You shouldn't need to change the submit button -->              
+                            <input type="submit" class="btn btn-primary btn-lg" value="Predict!">            
+                        </form>          
+                    </div>        
+                </div>        
+            </div>          
+            <hr>      
+            <!-- This section contains paragraphs of text at the bottom --> 
+                <div class="container">     
+                <p>          
+                Some cool content will go here        
+                </p>        
+                <p>          
+                This app deploys a Logistic Regression model to predict drug use. 
+                It was created with the Monitoring the Future dataset, a study funded by the 
+                Substances Abuse and Mental Health Services Administration to study trends in teenage use and attitudes
+                towards drugs.       
+                </p>        
+                <p>          
+                Every year, approximately 11,000-16,000 students across 133 schools in the United States are given a survey
+                that asks questions about their past drug use, opinions on the risks of drugs, and general demographic information.
+                
+                The raw information (which can be found HERE) has been converted into a usable dataset which can be found on Kaggle.
+                </p>      
+            </div>    
+        </div>  
+    </body>
+</html>
