@@ -86,7 +86,7 @@ In terms of real-life applicability, Logistic Regression ended up being the best
 
 ```
 
-├── img<br>
+├── img
 ....├── amenbrain.png
 ....├── fsm.png
 ....├── mtf.png
