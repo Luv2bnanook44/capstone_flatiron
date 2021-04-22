@@ -121,4 +121,9 @@ class ModelHistory():
 
         return val_recall, val_prec, val_acc, roc_auc, clf
 
+drug_cols = ['weed_hash_lifetime_freq','weed_hash_yr_freq','weed_hash_month_freq','lsd_lifetime_freq','lsd_yr_freq',
+             'lsd_month_freq','pysd_lifetime_freq','pysd_yr_freq','pysd_month_freq','coke_lifetime_freq','coke_yr_freq',
+             'coke_month_freq','amph_lifetime_freq','amph_yr_freq','amph_month_freq','sedbarb_lifetime_freq','sedbarb_yr_freq',
+            'sedbarb_month_freq','tranq_lifetime_freq','tranq_yr_freq','tranq_month_freq','heroin_lifetime_freq','heroin_yr_freq',
+             'heroin_month_freq','narcotic_lifetime_freq','narcotic_yr_freq','narcotic_month_freq', 'num_drugs_yr']
 
