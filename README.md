@@ -8,7 +8,7 @@
 
 * `src` contains source code to run the `final_notebook.ipynb`.
 * `final_notebook.ipynb` contains a detailed description and demonstration of the modeling process for this project, as well as the full list of source material (modeling and otherwise).
-* `presentation.pdf` is a slide deck containing major highlights of the project.
+* `capstone_presentation.pdf` is a slide deck containing major highlights of the project.
 
 ***********
 ## Business Problem
@@ -28,7 +28,7 @@
 
 ## Purpose of Project:
 
-To develop/tune machine learning classifiers in the hopes of more deeply understanding factors that correlate with drug use.
+To develop/tune machine learning classifiers in the hopes of more deeply understanding *factors that correlate with drug use*.
 
 For potential deployement the final model from this project has potential to serve as a "barometer" for high schools, who can implement the survey anonymously and gain some high-level data about the state of their school and be able to more precisely analyze trends amongst their students and measure their **prevention efforts** against any changes seen in the model.
 
@@ -58,6 +58,8 @@ The following models were implemented, along with [Boruta feature selection](htt
 * Random Forests
 * XGBoost
 
+###### Models were validated with StratifiedKFolds, dividing the training set into 10 folds.
+
 The **final model** produced an accuracy of **80.6%** and a recall of **72%** (Test Set)
 
 **Recall** was given extra attention as a metric, since false negatives (predicting no drug use when drug use is present) are predictions that would potentially cause the most harm.
@@ -86,6 +88,7 @@ In terms of real-life applicability, Logistic Regression ended up being the best
 
 ├── img<br>
 ....├── amenbrain.png
+....├── fsm.png
 ....├── mtf.png
 ....├── nida.png
 ....├── samhsa.png
@@ -94,12 +97,7 @@ In terms of real-life applicability, Logistic Regression ended up being the best
 ....├── __init__.py
 ....├── eda.py
 ....└── modeling.py
-├── src<br>
-....├── _init_.py<br>
-....├── data_cleaning.py<br>
-....├── eda.py<br>
-....└── models.py<br>
-├──presentation.pdf<br>
-├── final_notebook.ipynb<br>
-└── README.md<br>
+├── capstone_presentation.pdf
+├── final_notebook.ipynb
+└── README.md
 ```
