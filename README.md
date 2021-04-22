@@ -98,6 +98,7 @@ In terms of real-life applicability, Logistic Regression ended up being the best
 ....├── eda.py
 ....└── modeling.py
 ├── capstone_presentation.pdf
+├── environment.yml
 ├── final_notebook.ipynb
 └── README.md
 ```
