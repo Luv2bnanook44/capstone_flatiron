@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This is the title that appears in the browser tab.
+      Replace it with the title of your app
+    -->
+    <title>Drug Use Predictor Results</title>
+    <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  </head>
+  <body style="background-color: #77C3C8;">
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4">Your Results...</h1>
+      </div>
+      <div class="container">
+        <!-- 
+          This table contains the result as a large number surrounded by smaller
+          text. It uses a table rather than bootstrap rows/cols in order to use
+          the align-middle CSS class
+        -->
+        <table style="width: 100%;">
+          <tbody>
+            <tr>
+              <td class="align-middle" style="width: 33%; text-align: right;">
+
+                The model says you have a {{ prob0 }} % chance of not having used drugs in the past year,
+                and a {{prob1}} % chance of having used drugs in the past year, leading the model to guess
+                you {{prediction}} used drugs in the past year.
+                
+              </td>
+            
+              <!-- Customize this text to describe the result -->
+              <td class="align-middle" style="width: 33%">
+               
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <div class="row">
+          <div class="col" style="text-align: center;">
+            <!-- 
+              Replace this with something relevant, maybe a freshly-generated
+              matplotlib graph?
+            -->
+            <!-- <img src="{{ url_for('static', filename='upward_sloping_chart.png') }}" 
+              alt="upward sloping chart" width="50%"> -->
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col" style="text-align: center;">
+            <form action="/">
+              <input type="submit" class="btn btn-primary btn-lg" value="Go back">
+            </form>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </body>
+</html>

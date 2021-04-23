@@ -18,20 +18,31 @@ def make_prediction():
     print(data) # Remove this when you're done debugging
     # Convert the data into just a list of values to be sent to the model    
     feature_values = extract_feature_values(data)    
-    print(feature_values) # Remove this when you're done debugging
     # Send the values to the model to get a prediction    
-    prediction = get_prediction(feature_values)
+    prediction, probs = get_prediction(feature_values)
+
+    if prediction == 0:
+        prediction = "HAVE NOT"
+    elif prediction == 1:
+        prediction = "HAVE"
+
+    prob0 = round(probs[0]*100, 3)
+    prob1 = round(probs[1]*100, 3)
+
+
     # Tell the browser to fetch the results page, passing along the prediction    
-    return redirect(url_for("show_results", prediction=prediction))
+    return redirect(url_for("show_results", prediction=prediction, prob0=prob0, prob1=prob1))
 
 @app.route("/show_results")
 def show_results():    
     """ Display the results page with the provided prediction """        
     # Extract the prediction from the URL params    
     prediction = request.args.get("prediction")
-    # Round it for display purposes    
-    prediction = round(float(prediction), 3)
+    prob0 = request.args.get("prob0")
+    prob1 = request.args.get("prob1")
+       
+    # prediction = round(float(prediction), 3)
     # Return the results pge    
-    return render_template("results.html", prediction=prediction)
+    return render_template("results.html", prediction=prediction, prob0=prob0, prob1=prob1)
     
 if __name__ == "__main__":    serve(app, host='0.0.0.0', port=5000)

@@ -7,8 +7,9 @@ def get_prediction(feature_values):
     
     # Model is expecting a list of lists, and returns a list of predictions
     predictions = loaded_model.predict(feature_values)
+    probs = loaded_model.predict_proba(feature_values)
     # We are only making a single prediction, so return the 0-th value
-    return predictions[0]
+    return [predictions[0], probs[0]]
 
 def un_pickle_model():
     """ Load the model from the .pkl file """

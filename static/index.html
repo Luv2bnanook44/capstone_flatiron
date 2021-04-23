@@ -1,30 +1,55 @@
 <!DOCTYPE html>
 <html>  
-    <head>    
+    <head style="background-color: #90938E;">    
         <!--      This is the title that appears in the browser tab.      Replace it with the title of your app    -->    
         <title>Drug Use Predictor</title>    
         <link rel="stylesheet" media="screen" href="/static/bootstrap.min.css">    
         <!-- If you add custom CSS, put it after the above bootstrap link -->  
     </head>
-    <body>    
+    <body style="background-color: #5F8F29">    
         <div class="container">      
             <!--         This top section has the gray background and large text containing the        
                 name of the app      -->      
-            <div class="jumbotron">        
+            <div class="jumbotron" style="background-color: #90938E;">        
                 <!-- Replace with the name of your app-->        
-                <h1 class="display-4">Drug Use Predictor</h1>      
+                <h1 class="display-3" style='text-align: center;'>Drug Use Predictor</h1>
+                <h1 class="display-5" style='text-align: center;'>Using Logistic Regression</h1>      
             </div>      
             <!-- This section contains a photo + the form for the user to enter data-->      
             <div class="container">         
                 <div class="row">          
-                    <div class="col-md-4" style="text-align: center;">            
+                    <div class="col-md" style="text-align: center;">            
                         <!--              Replace with a photo relevant to your project (and caption if              
                             applicable). It will automatically fill the same width as the              
-                            template version due to CSS styling.            -->            
-                            <img src="/static/mtflogo.jpg" alt="mtflogo" style="width: 100%;">         
-                        </div>          
-                        <div class="col-md-8">            
-                            <!--              Replace all labels and inputs with the relevant features for your
+                            template version due to CSS styling.            -->           
+               
+                      
+                            <p>          
+                            This app deploys a Logistic Regression model to predict drug use. 
+                            It was created with the <a href="http://www.monitoringthefuture.org/"> Monitoring the Future</a> dataset, a study funded by the 
+                            Substance Abuse and Mental Health Services Administration (SAMHSA) to study trends in teenage use and attitudes
+                            towards drugs.       
+                            </p> 
+                            
+                            <img src="/static/mtflogo.jpg" alt="mtflogo" style="width: 30%;"><br><br>
+                            
+                            <p>          
+                            Every year, approximately 11,000-16,000 students across over 100 schools in the United States are given a survey
+                            that asks questions about their past drug use, opinions on the risks of drugs, and general demographic information.
+                            
+                            The raw information (which can be found <a href="https://www.icpsr.umich.edu/web/NAHDAP/studies/6716#">HERE</a>) has been converted into a usable dataset which can be found on <a href="https://www.kaggle.com/jamiedowat/monitoring-the-future-12th-grade-drug-use-survey">Kaggle</a>.
+                            </p>              
+                        <hr>
+                        <div class="container", style="text-align: center;">
+
+                            <h1 class="display-5" style='text-align: center;'>Take the Survey:</h1> 
+                            <p>This model is going to perform a fancy linear transformation on the data you enter into this survey, to try to guess whether or not you have used 
+                                any illicit drugs (including marijuana) within the past year.</p>
+                            <p>This model was only trained on high school seniors, so if you wanna give the model it's best shot at guessing right, fill out the survey as your 12th grade self!</p>
+                        </div>
+                        
+                        <div class="col-md">            
+                            <!--   Replace all labels and inputs with the relevant features for your
                                                 model              
                                                 Attributes to note:              
                                                 id: this is used on the front end to link the label to the input              
@@ -37,18 +62,13 @@
                                                 form to function but they help the flow without needing a lot of              
                                                 nested <div>s to achieve the desired layout            -->            
                             <form action="/make_prediction" method="post">
-                                
-                                <br>              
-                                <label for="input-1">First off, have you used any illicit drug (including marijuana and abuse of prescription medication) in the past YEAR?</label>                        
-                                <select id="input-1" name="binary_drug">                
-                                    <option value="1">Yes</option>                
-                                    <option value="0">No</option>                       
-                                </select>              
+                                          
                                 <br>  
-                                <label for="input-2">If you are a high school senior, what is the year? (If not, what year were you a high school senior?)</label>              
+                                <label for="input-2">If you are a high school senior, what is the year? (If not, what year were you a high school senior?)</label> <br>             
                                 <input type="text" id="input-2" name="yr_adminst" value="2021"> 
-                                <br>              
-                                <label for="input-3">What region of the US do you live in?</label>                        
+                                <br>         
+                                <br>     
+                                <label for="input-3">What region of the US do you live in?</label> <br>                       
                                 <select id="input-3" name="region">                
                                     <option value="Northeast">Northeast</option>                
                                     <option value="Midwest">Midwest</option>                
@@ -67,7 +87,7 @@
                                 </select>              
                                 <br>
                                 <br>              
-                                <label for="input-5">Have you ever smoked a cigarette?</label>                        
+                                <label for="input-5">Have you ever smoked a cigarette?</label><br>                        
                                 <select id="input-5" name="evr_smoked_cig">                
                                     <option value="Never">Never</option>                
                                     <option value="1-2x">Once or Twice</option>                
@@ -77,7 +97,7 @@
                                 </select>              
                                 <br>  
                                 <br>              
-                                <label for="input-6">How many cigarettes have you smoked in the past month?</label>                        
+                                <label for="input-6">How many cigarettes have you smoked in the past month?</label> <br>                       
                                 <select id="input-6" name="cig_month_freq">                
                                     <option value="None">Nada</option>                
                                     <option value="<1 Cigarettes">One or less</option>                
@@ -89,7 +109,7 @@
                                 </select>              
                                 <br>   
                                 <br>              
-                                <label for="input-7">On how many occasions (if any) have you had alcoholic beverages to drink-- more than just a few sips-- in your lifetime?</label>                        
+                                <label for="input-7">On how many occasions (if any) have you had alcoholic beverages to drink-- more than just a few sips-- in your lifetime?</label><br>                        
                                 <select id="input-7" name="alcohol_lifetime_freq">                
                                     <option value="0">0 Occasions</option>                
                                     <option value="1-2X">1-2 Occasions</option>                
@@ -101,7 +121,7 @@
                                 </select>              
                                 <br> 
                                 <br>              
-                                <label for="input-8">On how many occasions (if any) have you had alcoholic beverages to drink-- more than just a few sips-- in the past YEAR?</label>                        
+                                <label for="input-8">On how many occasions (if any) have you had alcoholic beverages to drink-- more than just a few sips-- in the past YEAR?</label> <br>                       
                                 <select id="input-8" name="alcohol_yr_freq">                
                                     <option value="0">0 Occasions</option>                
                                     <option value="1-2X">1-2 Occasions</option>                
@@ -127,14 +147,14 @@
                                 </select>              
                                 <br>   
                                 <br>              
-                                <label for="input-10">Sex</label>                        
+                                <label for="input-10">Sex</label> <br>                       
                                 <select id="input-10" name="sex">                
                                     <option value="Female">Female</option>                
                                     <option value="Male">Male</option>           
                                 </select>              
                                 <br>  
                                 <br>              
-                                <label for="input-11">Where did you grow up mostly?</label>                        
+                                <label for="input-11">Where did you grow up mostly?</label><br>                        
                                 <select id="input-11" name="area_type">                
                                     <option value="Farm">Farm</option>                
                                     <option value="Country">Country</option>                
@@ -148,7 +168,7 @@
                                 </select>              
                                 <br> 
                                 <br>              
-                                <label for="input-12">What is your present marital status?</label>                        
+                                <label for="input-12">What is your present marital status?</label> <br>                       
                                 <select id="input-12" name="marital_status">                
                                     <option value="Single">Single</option>                
                                     <option value="Engaged">Engaged</option>                
@@ -159,14 +179,17 @@
                                 <br>              
                                 <label for="input-13">Which of the following people live in the same household with you? (Mark all that apply)</label>                                  
                                 <br>   
+                                <input type="hidden" id="input-13" name="has_father" value="No">
                                 <input type="checkbox" id="input-13" name="has_father" value="Yes">
-                                <label for="input13"> Father</label><br>
+                                <label for="input-13"> Father</label><br>
+                                <input type="hidden" id="input-14" name="has_mother" value="No">
                                 <input type="checkbox" id="input-14" name="has_mother" value="Yes">
                                 <label for="input-14"> Mother</label><br>
+                                <input type="hidden" id="input-15" name="has_siblings" value="No">
                                 <input type="checkbox" id="input-15" name="has_siblings" value="Yes">
                                 <label for="input-15"> Siblings</label><br>        
                                 <br>              
-                                <label for="input-16">What is the highest level of schooling your father completed?</label>                        
+                                <label for="input-16">What is the highest level of schooling your father completed?</label> <br>                       
                                 <select id="input-16" name="father_educ_lvl">                
                                     <option value="Grade School">Grade School</option>                
                                     <option value="Some High School">Some High School</option>                
@@ -177,7 +200,7 @@
                                 </select>              
                                 <br>  
                                 <br>              
-                                <label for="input-17">What is the highest level of schooling your mother completed?</label>                        
+                                <label for="input-17">What is the highest level of schooling your mother completed?</label><br>                        
                                 <select id="input-17" name="mother_educ_lvl">                
                                     <option value="Grade School">Grade School</option>                
                                     <option value="Some High School">Some High School</option>                
@@ -197,7 +220,7 @@
                                 </select>              
                                 <br>   
                                 <br>              
-                                <label for="input-19">How would you describe your political beliefs?</label>                        
+                                <label for="input-19">How would you describe your political beliefs?</label><br>                        
                                 <select id="input-19" name="political_value_type">                
                                     <option value="Don't Know">Don't Know</option>                
                                     <option value="Liberal">Liberal</option>                
@@ -208,7 +231,7 @@
                                 </select>              
                                 <br>  
                                 <br>              
-                                <label for="input-20">How often do you attend religious services?</label>                        
+                                <label for="input-20">How often do you attend religious services?</label><br>                        
                                 <select id="input-20" name="relig_attd">                
                                     <option value="Never">Never</option>
                                     <option value="Rarely">Rarely</option>                
@@ -217,7 +240,7 @@
                                 </select>              
                                 <br>  
                                 <br>              
-                                <label for="input-21">How important is religion in your life?</label>                        
+                                <label for="input-21">How important is religion in your life?</label> <br>                       
                                 <select id="input-21" name="relig_importance">                
                                     <option value="Not Important">Not Important</option>
                                     <option value="A Little Important">A Little Important</option>                
@@ -320,7 +343,7 @@
                                 </select>              
                                 <br>  
                                 <br>              
-                                <label for="input-30">How likely is it that you will serve in the armed forces after high school?</label>                        
+                                <label for="input-30">How likely is it that you will serve in the armed forces after high school?</label> <br>                       
                                 <select id="input-30" name="military_after_hs">                
                                     <option value="Definitely Won't">Definitely Won't</option>
                                     <option value="Probably Won't">Probably Won't</option>                
@@ -362,16 +385,22 @@
                                     stood in your way. How many of the following things would you WANT to do?
                                     (Mark all that apply.)</label>                                  
                                 <br>   
+                                
                                 <input type="checkbox" id="input-34" name="desire_tech_school" value="Yes">
                                 <label for="input34"> Technical/Vocational School</label><br>
+                                
                                 <input type="checkbox" id="input35" name="desire_military" value="Yes">
                                 <label for="input35"> Serve in the Armed Forces</label><br>
+                             
                                 <input type="checkbox" id="input36" name="desire_2yrcoll" value="Yes">
-                                <label for="input36"> Graduate from a 2 year college program</label><br>   
+                                <label for="input36"> Graduate from a 2 year college program</label><br>
+                                
                                 <input type="checkbox" id="input37" name="desire_4yrcoll" value="Yes">
                                 <label for="input37"> Graduate from a 4 year college program</label><br>
+                             
                                 <input type="checkbox" id="input38" name="desire_gradsch" value="Yes">
-                                <label for="input38"> Attend graduate or professional school after college</label><br>     
+                                <label for="input38"> Attend graduate or professional school after college</label><br>
+                               
                                 <input type="checkbox" id="input39" name="desire_none" value="Yes">
                                 <label for="input39"> None of the Above</label><br>
                                 <br>              
@@ -474,6 +503,7 @@
                             <!-- rest of template -->
                               
                             <!-- You shouldn't need to change the submit button -->              
+                            <br> 
                             <input type="submit" class="btn btn-primary btn-lg" value="Predict!">            
                         </form>          
                     </div>        
@@ -481,22 +511,7 @@
             </div>          
             <hr>      
             <!-- This section contains paragraphs of text at the bottom --> 
-                <div class="container">     
-                <p>          
-                Some cool content will go here        
-                </p>        
-                <p>          
-                This app deploys a Logistic Regression model to predict drug use. 
-                It was created with the Monitoring the Future dataset, a study funded by the 
-                Substances Abuse and Mental Health Services Administration to study trends in teenage use and attitudes
-                towards drugs.       
-                </p>        
-                <p>          
-                Every year, approximately 11,000-16,000 students across 133 schools in the United States are given a survey
-                that asks questions about their past drug use, opinions on the risks of drugs, and general demographic information.
                 
-                The raw information (which can be found HERE) has been converted into a usable dataset which can be found on Kaggle.
-                </p>      
             </div>    
         </div>  
     </body>
