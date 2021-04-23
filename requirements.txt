@@ -6,7 +6,7 @@ Flask-SQLAlchemy==2.5.1
 greenlet==1.0.0
 itsdangerous==1.1.0
 Jinja2==2.11.3
-MarkupSafe @ file:///opt/concourse/worker/volumes/live/fac44ebc-60de-4182-7f89-29bb8796c554/volume/markupsafe_1607027351541/work
+MarkupSafe @ file:///Users/runner/miniforge3/conda-bld/markupsafe_1610127727012/work
 SQLAlchemy==1.4.10
 waitress @ file:///tmp/build/80754af9/waitress_1593443114440/work
 Werkzeug==1.0.1
