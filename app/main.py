@@ -1,7 +1,8 @@
+
 from flask import Flask, send_from_directory, render_template, request, redirect, url_for 
 from waitress import serve
-from src.utils import extract_feature_values 
-from src.models.predictor import get_prediction
+from .utils import extract_feature_values 
+from .models.predictor import get_prediction
 
 app = Flask(__name__, static_url_path="/static")
 
@@ -17,9 +18,11 @@ def make_prediction():
     data = request.form    
     print(data) # Remove this when you're done debugging
     # Convert the data into just a list of values to be sent to the model    
-    feature_values = extract_feature_values(data)    
+    feature_values = extract_feature_values(data)  
+
+    model_path = "app/models/model.pkl"
     # Send the values to the model to get a prediction    
-    prediction, probs = get_prediction(feature_values)
+    prediction, probs = get_prediction(feature_values, model_path)
 
     if prediction == 0:
         prediction = "HAVE NOT"
@@ -45,4 +48,5 @@ def show_results():
     # Return the results pge    
     return render_template("results.html", prediction=prediction, prob0=prob0, prob1=prob1)
     
-if __name__ == "__main__":    serve(app, host='0.0.0.0', port=5000)
+if __name__ == "__main__":    
+    serve(app, host='0.0.0.0', port=5000)
